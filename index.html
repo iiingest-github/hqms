@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+		<title>黄泉密室</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="script.js" onload="srcs-=1;"></script>
+		<script src="game.js" onload="srcs-=1;"></script>
+		<script src="sp.js" onload="srcs-=1;"></script>
+	</head>
+	<body onload="init();">
+		
+		<img src="src/title.jpg" onload="srcs-=1;" hidden>
+		<img src="src/title2.jpg" onload="srcs-=1;" hidden>
+		
+		<div id="loading" class="container">
+			<div style="height:40%;"></div>
+			<p>载入中...</p>
+			<p><small>为了游戏体验，请勿查看源码。</small></p>
+		</div>
+		
+		<div id="title" class="container" style="display:none;">
+			<div id="tblank" style="height:40%;"></div>
+			<div id="tmenu">
+				<div class="btn btn1" onclick="startgame();">开始游戏</div><!--淡入淡出场景-->
+				<div class="btn btn1" onclick="showsp('pw');">通关特典</div><!--显示pw-->
+				<div class="btn btn1" onclick="showsp('cast');">关于我们</div><!--显示cast-->
+			</div>
+			
+			<div class="tsp" id="pw" style="display:none;">
+				<div style="height:30%;"></div>
+				<p>请输入密码</p>
+				<p><input type="text" style="width:80px;" onblur="checkinp(this);" oninput="checkinp(this);"></p>
+				<p><br/></p>
+				<span class="btn btn2" onclick="hidesp('pw');"><small>返回</small></span><!--返回-->
+				<p><br/></p>
+			</div>
+			<div class="tsp" id="sp" style="display:none;"></div>
+			<div class="tsp" id="cast" style="display:none;">
+				<p><br/></p>
+				<p>刘帅哥<small>　程序/绘图</small></p>
+				<p><small>“总算是做完了！本人技术渣+穷鬼，买不起服务器，最后存档和BGM还是不知道该怎么做……如果有技术大佬愿意协助一下的话非常欢迎！指路：iiingest@sina.com”</small></p>
+				<p><br/></p>
+				<p>冯宝器<small>　剧本/背景</small></p>
+				<p><small>“每天都在跟儿子玩甲方互换，没想到最后可以做成这么完整的游戏，非常感动，尤其感谢儿子，ABCD都好可爱不知道娶哪个回家了……希望大家喜欢这个游戏！双马尾赛高！”</small></p>
+				<p><br/></p>
+				<p>其他素材来源：</p>
+				<p><small>Unsplash.com<br/>Pixabay.com<br/>alcides OTA on VisualHunt.com</small></p>
+				<p><br/></p>
+				<p>声明：</p>
+				<p><small>本游戏为html形式，如果是为了学习参考可以查看源码（虽然做得挺烂的），但是请不要大面积照抄然后拿出去说是自己做的。</small></p>
+				<p><br/></p>
+				<span class="btn btn2" onclick="hidesp('cast');"><small>返回</small></span><!--返回-->
+				<p><br/></p>
+			</div>
+		</div>
+			
+		<div id="game" class="container" style="display:none;" onclick="next();"><!--下一句-->
+			<img class="gbg" id="0" src="src/bg0.jpg" onload="srcs-=1;" hidden>
+			<img class="gbg" id="1" src="src/bg1.jpg" onload="srcs-=1;" hidden>
+			<img class="gbg" id="2" src="src/bg2.jpg" onload="srcs-=1;" hidden>
+			<img class="gbg" id="3" src="src/bg3.jpg" onload="srcs-=1;" hidden>
+			<img class="gbg" id="4" src="src/bg4.jpg" onload="srcs-=1;" hidden>
+			<img class="gbg" id="5" src="src/bg5.jpg" onload="srcs-=1;" hidden>
+			<img class="gbg" id="6" src="src/bg6.jpg" onload="srcs-=1;" hidden>
+			<img class="gbg" id="7" src="src/bg7.jpg" onload="srcs-=1;" hidden>
+			<img class="gbg" id="8" src="src/bg8.jpg" onload="srcs-=1;" hidden>
+			<img class="gbg" id="9" src="src/bg9.jpg" onload="srcs-=1;" hidden>
+			<img class="gbg" id="10" src="src/bg10.jpg" onload="srcs-=1;" hidden>
+			<img class="gbg" id="11" src="src/bg11.jpg" onload="srcs-=1;" hidden>
+			<img class="gbg" id="12" src="src/bg12.jpg" onload="srcs-=1;" hidden>
+			<img class="gbg" id="13" src="src/bg13.jpg" onload="srcs-=1;" hidden>
+			<img class="gbg" id="14" src="src/bg14.jpg" onload="srcs-=1;" hidden>
+			<img class="gbg" id="15" src="src/bg15.jpg" onload="srcs-=1;" hidden>
+			<img class="gbg" id="16" src="src/bg16.jpg" onload="srcs-=1;" hidden>
+			<img class="gbg" id="17" src="src/bg17.jpg" onload="srcs-=1;" hidden>
+			<img class="gbg" id="18" src="src/bg18.jpg" onload="srcs-=1;" hidden>
+			<img class="gbg" id="19" src="src/bg19.jpg" onload="srcs-=1;" hidden>
+			<img class="gbg" id="20" src="src/bg20.jpg" onload="srcs-=1;" hidden>
+			<img class="gbg" id="21" src="src/bg21.jpg" onload="srcs-=1;" hidden>
+			<img class="gbg" id="cg1" src="src/bgcg1.jpg" onload="srcs-=1;" hidden>
+			<img class="gbg" id="cg2" src="src/bgcg2.jpg" onload="srcs-=1;" hidden>
+			<img class="gbg" id="end1" src="src/bgend1.jpg" onload="srcs-=1;" hidden>
+			<img class="gbg" id="end2" src="src/bgend2.jpg" onload="srcs-=1;" hidden>
+			<img id="gset" src="src/setting.png" onclick="showmenu();"><!--打开设置-->
+			<img class="gchara" id="1-1" src="src/chara1-1.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="1-2" src="src/chara1-2.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="1-3" src="src/chara1-3.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="1-4" src="src/chara1-4.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="1-5" src="src/chara1-5.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="1-6" src="src/chara1-6.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="1-7" src="src/chara1-7.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="1-8" src="src/chara1-8.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="1-9" src="src/chara1-9.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="1-10" src="src/chara1-10.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="1-11" src="src/chara1-11.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="1-13" src="src/chara1-13.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="1-14" src="src/chara1-14.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="2-1" src="src/chara2-1.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="2-2" src="src/chara2-2.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="2-3" src="src/chara2-3.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="2-4" src="src/chara2-4.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="2-5" src="src/chara2-5.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="2-6" src="src/chara2-6.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="2-7" src="src/chara2-7.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="2-8" src="src/chara2-8.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="2-9" src="src/chara2-9.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="2-10" src="src/chara2-10.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="2-11" src="src/chara2-11.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="2-12" src="src/chara2-12.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="2-13" src="src/chara2-13.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="2-14" src="src/chara2-14.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="2-15" src="src/chara2-15.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="2-16" src="src/chara2-16.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="3-1" src="src/chara3-1.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="3-2" src="src/chara3-2.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="3-3" src="src/chara3-3.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="3-4" src="src/chara3-4.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="3-5" src="src/chara3-5.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="3-6" src="src/chara3-6.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="3-7" src="src/chara3-7.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="4-1" src="src/chara4-1.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="4-2" src="src/chara4-2.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="4-3" src="src/chara4-3.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="4-4" src="src/chara4-4.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="4-5" src="src/chara4-5.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="4-6" src="src/chara4-6.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="4-7" src="src/chara4-7.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="4-8" src="src/chara4-8.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="4-9" src="src/chara4-9.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="4-10" src="src/chara4-10.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="4-11" src="src/chara4-11.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="4-12" src="src/chara4-12.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="4-13" src="src/chara4-13.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="4-14" src="src/chara4-14.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="4-15" src="src/chara4-15.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="4-16" src="src/chara4-16.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="4-17" src="src/chara4-17.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="4-18" src="src/chara4-18.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="4-19" src="src/chara4-19.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="4-20" src="src/chara4-20.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="5-1" src="src/chara5-1.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="5-2" src="src/chara5-2.png" onload="srcs-=1;" hidden>
+			<img class="gchara" id="5-3" src="src/chara5-3.png" onload="srcs-=1;" hidden>
+			<div id="gbbox">
+				<div id="gname" class="gbox" style="opacity:0;">空</div>
+				<div id="gtext" class="gbox"></div>
+			</div>
+		</div>
+		
+		<div id="select1" class="container" style="display:none;">
+			<div style="height:35%;"></div>
+			<div id="tmenu">
+				<div class="btn btn1" id="sbtn1">A</div>
+				<div class="btn btn1" id="sbtn2">B</div>
+				<div class="btn btn1" id="sbtn3">C</div>
+			</div>
+		</div>
+		<div id="select2" class="container" style="display:none;">
+			<div style="height:40%;"></div>
+			<div id="tmenu">
+				<div class="btn btn1" id="sbtn4">A</div>
+				<div class="btn btn1" id="sbtn5">B</div>
+			</div>
+		</div>
+		<div id="select3" class="container" style="display:none;">
+			<div style="height:20%;"></div>
+			<div id="tmenu">
+				<div class="btn btn1" id="sbtn6" onclick="sel('A',10)">A</div>
+				<div class="btn btn1" id="sbtn7" onclick="sel('B',10)">B</div>
+				<div class="btn btn1" id="sbtn8" onclick="sel('C',10)">C</div>
+				<div class="btn btn1" id="sbtn9" onclick="sel('me',10)">me</div>
+			</div>
+		</div>
+		
+		<div id="menu" class="container" style="display:none;">
+			<div style="height:30%;"></div>
+			<div id="tmenu">
+				<div class="btn btn1" onclick="showwa('warning1');">跳过剧情</div><!--弹警告-->
+				<div class="btn btn1" onclick="showwa('warning2');">返回标题</div><!--弹警告-->
+				<div style="height:10%;"></div>
+				<div class="btn btn1" onclick="hidemenu();">取消</div><!--关闭设置-->
+			</div>
+		</div>
+		
+		<div id="warning1" class="container" style="background-color:rgba(0,0,0,0.8);display:none;">
+			<div style="height:35%;"></div>
+			<p>跳过剧情吗？</p>
+			<p><small>此操作将直接跳转至下一选项点。</small></p>
+			<p><br/></p>
+			<span class="btn btn2" onclick="skip();"><small>是</small></span><!--跳过剧情-->
+			<span class="btn btn2" onclick="hidewa('warning1');"><small>否</small></span><!--关闭警告-->
+		</div>
+		
+		<div id="warning2" class="container" style="background-color:rgba(0,0,0,0.8);display:none;">
+			<div style="height:35%;"></div>
+			<p>返回标题吗？</p>
+			<p><small>注意：本游戏不支持存读档。</small></p>
+			<p><br/></p>
+			<span class="btn btn2" onclick="totitle();"><small>是</small></span><!--返回标题-->
+			<span class="btn btn2" onclick="hidewa('warning2');"><small>否</small></span><!--关闭警告-->
+		</div>
+		
+		<div id="warning3" class="container" style="background-color:rgba(0,0,0,0.8);display:none;">
+			<div style="height:40%;"></div>
+			<p>当前剧情无法跳过。</p>
+			<p><br/></p>
+			<span class="btn btn2" onclick="hidewa('warning3');"><small>确定</small></span><!--关闭警告-->
+		</div>
+		
+	</body>
+</html>
